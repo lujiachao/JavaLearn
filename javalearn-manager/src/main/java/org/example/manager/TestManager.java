@@ -1,7 +1,9 @@
 package org.example.manager;
 
+import cn.hutool.core.date.DateTime;
 import org.example.AdminOperationLogServiceImpl;
 import org.example.WebException;
+import org.example.dataentity.AdminOperationLog;
 import org.example.enums.WebResultCode;
 import org.example.mapper.AdminOperationLogMapper;
 import org.example.model.request.TestTwoRequest;
@@ -45,5 +47,20 @@ public class TestManager {
     public void TestFour()
     {
         int result = _adminOperationLogServiceImpl.count();
+        AdminOperationLog adminOperationLog = new AdminOperationLog();
+        adminOperationLog.setIdUser(0);
+        adminOperationLog.setModule("user");
+        adminOperationLog.setModuleName("用户");
+        adminOperationLog.setUserName("admin");
+        adminOperationLog.setName("admintest");
+        adminOperationLog.setAction("list");
+        adminOperationLog.setActionName("dsfddfd");
+        adminOperationLog.setDescription("用户admin在用户管理界面做了获取用户列表操作");
+        adminOperationLog.setResult("{}");
+        adminOperationLog.setTimeBegin(DateTime.now());
+        adminOperationLog.setTimeEnd(DateTime.now());
+        adminOperationLog.setTimeCreate(DateTime.now());
+        adminOperationLog.setRoute("api/user/list");
+        _adminOperationLogServiceImpl.save(adminOperationLog);
     }
 }
