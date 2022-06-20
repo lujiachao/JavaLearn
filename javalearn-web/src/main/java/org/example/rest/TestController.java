@@ -10,6 +10,7 @@ import org.example.model.response.TestExceptionResponse;
 import org.example.model.response.TestTwoResponse;
 import org.example.rest.base.config.swagger.model.WebResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,5 +46,13 @@ public class TestController {
     {
         _manager.TestFour();
         return WebResponse.success(null);
+    }
+
+    // 测试redis相关操作
+    @PostMapping("Five")
+    public WebResponse<String> TestFive() throws  WebException
+    {
+        _manager.TestFive();
+        return  WebResponse.success(null);
     }
 }

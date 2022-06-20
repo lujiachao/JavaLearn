@@ -9,16 +9,22 @@ import org.example.mapper.AdminOperationLogMapper;
 import org.example.model.request.TestTwoRequest;
 import org.example.model.response.TestExceptionResponse;
 import org.example.model.response.TestTwoResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.JedisPool;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TestManager {
     @Resource
     private AdminOperationLogServiceImpl _adminOperationLogServiceImpl;
+
+    @Autowired
+    private JedisUtil _jedisUtil;
 
     public TestExceptionResponse TestOneException() throws WebException{
         throw new WebException(WebResultCode.EXEC_DAPP_SDK_API_BUS_ERROR, "测试接口异常");
@@ -62,5 +68,20 @@ public class TestManager {
         adminOperationLog.setTimeCreate(DateTime.now());
         adminOperationLog.setRoute("api/user/list");
         _adminOperationLogServiceImpl.save(adminOperationLog);
+        // 测试执行sql语句
+        _adminOperationLogServiceImpl.UpdateActionName("newActionName", (long)2011411);
+        // 测试事务
+        _adminOperationLogServiceImpl.TestTransational("SecondActionName",  (long)2011412, "NewUserName");
+    }
+
+    // Redis
+    public void TestFive()
+    {
+        Boolean isConnect = _jedisUtil.IsConnect();
+        Set<String> keys = _jedisUtil.GetAallKeys("*");
+        long count = _jedisUtil.GetKeyNums();
+        Boolean addOne = _jedisUtil.Add("hello", "welcome to redis");
+        Boolean addOneWithExpirTime = _jedisUtil.Add("hello2", "welcome to redis", 5000);
+        String getOne = _jedisUtil.GetValue("hello");
     }
 }

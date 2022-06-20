@@ -26,6 +26,7 @@
         <module>javalearn-service</module>
         <module>javalearn-web</module>
         <module>javalearn-common</module>
+        <module>javalearn-redis</module>
     </modules>
 
     <dependencyManagement>
@@ -39,6 +40,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
 
@@ -159,6 +166,11 @@
                 <groupId>org.bouncycastle</groupId>
                 <artifactId>bcpkix-jdk15on</artifactId>
                 <version>1.69</version>
+            </dependency>
+
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
             </dependency>
         </dependencies>
     </dependencyManagement>

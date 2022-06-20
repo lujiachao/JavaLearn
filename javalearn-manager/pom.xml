@@ -35,15 +35,15 @@
         </dependency>
 
         <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>4.4</version>
+            <groupId>org.example</groupId>
+            <artifactId>javalearn-redis</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>4.2.1</version>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.4</version>
         </dependency>
 
         <dependency>
