@@ -1,6 +1,7 @@
 package org.example.manager;
 
 import cn.hutool.core.date.DateTime;
+import org.apache.tomcat.jni.Directory;
 import org.example.AdminOperationLogServiceImpl;
 import org.example.WebException;
 import org.example.dataentity.AdminOperationLog;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.JedisPool;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -83,5 +85,40 @@ public class TestManager {
         Boolean addOne = _jedisUtil.Add("hello", "welcome to redis");
         Boolean addOneWithExpirTime = _jedisUtil.Add("hello2", "welcome to redis", 5000);
         String getOne = _jedisUtil.GetValue("hello");
+    }
+
+    // io
+    public void TestSix() {
+        String strPath = "F:\\JavaBak";
+        File dir = new File(strPath);
+        File[] files = dir.listFiles();
+        if (files != null)
+        {
+            for (int i = 0; i < files.length; i++)
+            {
+                String fileName = files[i].getName();
+                String path = files[i].getPath();
+                boolean isExist = files[i].exists();
+            }
+
+            File fileDel = new File("F:\\JavaBak\\安慕希草莓燕麦酸奶200g");
+            if (fileDel.isDirectory()){
+                deleteDir(fileDel);
+            }
+            fileDel.delete();
+        }
+    }
+
+    public static void deleteDir(File directory){
+        File files[] = directory.listFiles();
+        for (File file : files)
+        {
+            if (file.isDirectory()){
+                deleteDir(file);
+            }else {
+                file.delete();
+                System.out.println(file.getName() + ": : 文件已删除");
+            }
+        }
     }
 }

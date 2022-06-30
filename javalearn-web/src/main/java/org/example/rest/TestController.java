@@ -1,5 +1,6 @@
 package org.example.rest;
 
+import com.sun.corba.se.spi.activation._ServerManagerImplBase;
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import org.example.WebException;
 import org.example.enums.WebResultCode;
@@ -55,4 +56,13 @@ public class TestController {
         _manager.TestFive();
         return  WebResponse.success(null);
     }
+
+    // 测试文件相关操作
+    @PostMapping("Six")
+    public WebResponse<String> TestSix() throws WebException
+    {
+        _manager.TestSix();
+        return  WebResponse.success(null);
+    }
+
 }
