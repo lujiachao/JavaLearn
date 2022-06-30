@@ -12,10 +12,7 @@ import org.example.model.response.TestTwoResponse;
 import org.example.rest.base.config.swagger.model.WebResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.NullLiteral;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value= "/JavaLearn/Test")
@@ -65,4 +62,27 @@ public class TestController {
         return  WebResponse.success(null);
     }
 
+    @GetMapping("GetRequestOne")
+    public WebResponse<String> TestGetRequestOne()
+    {
+        return WebResponse.success("第一个Get不带参数的接口");
+    }
+
+    @GetMapping("GetRequestParam")
+    public WebResponse<String> TestGetRequestParam(@RequestParam Integer id)
+    {
+        return WebResponse.success("request param: " + id);
+    }
+
+    @GetMapping("/param/{num}")
+    public WebResponse<String> PathParam(@PathVariable Integer num)
+    {
+        return WebResponse.success("path param: " + num.toString());
+    }
+
+    @GetMapping("GetRequestMoreParam")
+    public WebResponse<String> TestGetRequestMoreParam(@RequestParam Integer id, @RequestParam Integer id2)
+    {
+        return WebResponse.success("request param: " + id.toString() + ";" + id2.toString() );
+    }
 }
