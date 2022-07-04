@@ -13,6 +13,7 @@
         <module name="start" />
         <module name="javalearn-dao" />
         <module name="javalearn-service" />
+        <module name="javalearn-socket" />
         <module name="javalearn-common" />
         <module name="javalearn-redis" />
       </profile>

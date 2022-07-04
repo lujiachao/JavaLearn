@@ -27,6 +27,7 @@
         <module>javalearn-web</module>
         <module>javalearn-common</module>
         <module>javalearn-redis</module>
+        <module>javalearn-socket</module>
     </modules>
 
     <dependencyManagement>
