@@ -1,4 +1,4 @@
-package org.example.rest.base.config.swagger.model;
+package org.example.config.swagger.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Getter;

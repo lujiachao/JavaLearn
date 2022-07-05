@@ -28,6 +28,7 @@
         <module>javalearn-common</module>
         <module>javalearn-redis</module>
         <module>javalearn-socket</module>
+        <module>javalearn-http</module>
     </modules>
 
     <dependencyManagement>

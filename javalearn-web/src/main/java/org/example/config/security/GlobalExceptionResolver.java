@@ -1,9 +1,9 @@
-package org.example.rest.base.config.security;
+package org.example.config.security;
 
+import org.example.config.swagger.model.WebResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.WebException;
-import org.example.rest.base.config.swagger.model.WebResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -1,17 +1,12 @@
-package org.example.rest;
+package org.example;
 
-import com.sun.corba.se.spi.activation._ServerManagerImplBase;
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
-import org.example.WebException;
-import org.example.enums.WebResultCode;
 import org.example.manager.TestManager;
 import org.example.model.request.TestThreeRequest;
 import org.example.model.request.TestTwoRequest;
 import org.example.model.response.TestExceptionResponse;
 import org.example.model.response.TestTwoResponse;
-import org.example.rest.base.config.swagger.model.WebResponse;
+import org.example.config.swagger.model.WebResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -86,5 +81,10 @@ public class TestController {
         return WebResponse.success("request param: " + id.toString() + ";" + id2.toString() );
     }
 
-
+    @PostMapping("RestTempTestOne")
+    public WebResponse<String> TestRestTempTestOne()
+    {
+        _manager.HttpGetRequest();
+        return WebResponse.success("执行成功");
+    }
 }

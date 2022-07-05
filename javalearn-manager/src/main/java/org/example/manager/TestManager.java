@@ -1,18 +1,21 @@
 package org.example.manager;
 
 import cn.hutool.core.date.DateTime;
-import org.apache.tomcat.jni.Directory;
+import cn.hutool.http.HttpUtil;
+import com.alibaba.fastjson.JSON;
 import org.example.AdminOperationLogServiceImpl;
 import org.example.WebException;
 import org.example.dataentity.AdminOperationLog;
 import org.example.enums.WebResultCode;
-import org.example.mapper.AdminOperationLogMapper;
+import org.example.httpmodel.pesponse.WeatherResponse;
+import org.example.manager.config.RestTempConfig;
 import org.example.model.request.TestTwoRequest;
 import org.example.model.response.TestExceptionResponse;
 import org.example.model.response.TestTwoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.JedisPool;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -28,6 +31,8 @@ public class TestManager {
     @Autowired
     private JedisUtil _jedisUtil;
 
+    @Autowired
+    private RestTemplate _defaultRestTemplate;
     public TestExceptionResponse TestOneException() throws WebException{
         throw new WebException(WebResultCode.EXEC_DAPP_SDK_API_BUS_ERROR, "测试接口异常");
     }
@@ -120,5 +125,13 @@ public class TestManager {
                 System.out.println(file.getName() + ": : 文件已删除");
             }
         }
+    }
+
+    private static String _cityId =  "101110207";
+    private static String _weatherUrl = "http://t.weather.sojson.com/api/weather/city/";
+    public void  HttpGetRequest(){
+        ResponseEntity<String> responseEntity = _defaultRestTemplate.getForEntity(_weatherUrl + _cityId, String.class);
+        String responseEntityBody = responseEntity.getBody();
+        WeatherResponse weatherResponse = JSON.parseObject(responseEntityBody, WeatherResponse.class);
     }
 }
